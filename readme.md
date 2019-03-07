@@ -25,6 +25,8 @@ The library converts an URL to a table of the elements as described in RFC : sch
     www.example.com
     > = u.path
     /test/
+    > = u.path[1]
+    test
 
 ### URL normalization
 
