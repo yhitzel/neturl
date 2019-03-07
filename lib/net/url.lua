@@ -312,7 +312,16 @@ function M.parse(url)
 		M.setAuthority(comp, v)
 		return ''
 	end)
-	comp.path = decode(url, true)
+	-- comp.path = decode(url, true)
+	
+        pathparts = {}
+        decode(url, true):gsub("([^/]+)", function (s) pathparts[#pathparts+1]=s end)
+
+        setmetatable(pathparts, {
+                __tostring = function () return decode(url, true) end}
+        )
+
+        comp.path = pathparts
 
 	setmetatable(comp, {
 		__index = M,
